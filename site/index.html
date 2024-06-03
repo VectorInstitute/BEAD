@@ -1,0 +1,795 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huggingface.co/datasets/shainar/BEAD/">
+      
+      
+      
+        <link rel="next" href="text-classification/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+    
+    
+      
+        <title>Bias Evaluation Across Domains - BEADS</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bias-evaluation-across-domains-beads" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Bias Evaluation Across Domains - BEADS" class="md-header__button md-logo" aria-label="Bias Evaluation Across Domains - BEADS" data-md-component="logo">
+      
+  <img src="logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bias Evaluation Across Domains - BEADS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Bias Evaluation Across Domains - BEADS" class="md-nav__button md-logo" aria-label="Bias Evaluation Across Domains - BEADS" data-md-component="logo">
+      
+  <img src="logo.jpg" alt="logo">
+
+    </a>
+    Bias Evaluation Across Domains - BEADS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contact-and-access-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact and Access Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#highlights-of-the-bead-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Highlights of the BEAD Dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-dataset-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Dataset Downloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Direct Dataset Downloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-classification-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Classification Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-classification-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Classification Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspects-of-bias-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aspects of Bias Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bias-quantification-demographics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias Quantification Demographics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-generation-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Language Generation Datasets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="text-classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="token-classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Token Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aspect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aspects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bias-demographics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bias Quantification Demographics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="language-generation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Language Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="credit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Thanks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lisence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lisence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="datasheet.pdf" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Datasheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="feedback/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feedback
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contact-and-access-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact and Access Information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#highlights-of-the-bead-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Highlights of the BEAD Dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-dataset-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direct Dataset Downloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Direct Dataset Downloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-classification-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Classification Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-classification-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Classification Datasets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspects-of-bias-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aspects of Bias Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bias-quantification-demographics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias Quantification Demographics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-generation-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Language Generation Datasets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="bias-evaluation-across-domains-beads">Bias Evaluation Across Domains (BEADs) 💠🔷🔹🔹 🔹 🔹🔷💠</h1>
+<p>We introduce the <strong>Bias Evaluation Across Domains (BEADs) Dataset</strong> page, developed by the AI Engineering team under the work of <strong>Shaina Raza,PhD</strong> at the Vector Institute, and licensed under <strong><a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></strong>. It has been evaluated for large language models and designed to address critical challenges in identifying, quantifying, and mitigating biases within language models. This essential resource supports a variety of NLP tasks, facilitating comprehensive studies in bias evaluation.</p>
+<div style="text-align: center;">
+    <img src="fig1.png" alt="BEAD Dataset Overview" style="width: 50%; height: auto;">
+</div>
+
+<h2 id="contact-and-access-information">Contact and Access Information</h2>
+<p>This dataset provides a comprehensive resource for detecting and evaluating bias across multiple NLP tasks.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li>🌐 <a href="https://shainarazavi.github.io/BEAD/"><strong>Webpage</strong></a></li>
+<li>📂 <a href="https://huggingface.co/datasets/shainar/BEAD"><strong>Access the BEADs Dataset on Hugging Face</strong></a></li>
+<li>📜 <a href="datasheet.pdf"><strong>Datasheet</strong></a></li>
+<li>📝 <a href="lisence/"><strong>License</strong></a></li>
+<li>📧 <a href="mailto:shaina.raza@utoronto.ca"><strong>Contact Shaina Raza</strong></a></li>
+</ul>
+<h2 id="highlights-of-the-bead-dataset">Highlights of the BEAD Dataset</h2>
+<ul>
+<li>🌍 <strong>Multi-Aspects Coverage</strong>: Specifically targets biases related to gender, ethnicity, age, and more, using data from diverse social media platforms.</li>
+<li>🤖 <strong>Hybrid Annotation Approach</strong>: Employs advanced machine learning models combined with human verification to ensure accuracy and reliability.</li>
+<li>🛠️ <strong>Applications</strong>: Supports tasks such as text classification, token classification, and language generation, making it highly versatile for bias studies.</li>
+<li>🧪 <strong>Evaluation</strong>: Evaluation on LLMs.</li>
+</ul>
+<h2 id="direct-dataset-downloads">Direct Dataset Downloads</h2>
+<p>Access specific datasets directly through the links below for convenient downloading:</p>
+<h3 id="text-classification-datasets">Text Classification Datasets</h3>
+<ul>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/1-Text-Classification/README.MD">README</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/1-Text-Classification/bias-train.csv">Bias Training Data</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/1-Text-Classification/bias-valid.csv">Bias Validation Data</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/1-Text-Classification/sentiment-train.csv">Sentiment Training Data</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/1-Text-Classification/sentiment-valid.csv">Sentiment Validation Data</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/1-Text-Classification/toxic-train.csv">Toxicity Training Data</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/1-Text-Classification/toxic-valid.csv">Toxicity Validation Data</a></li>
+</ul>
+<h3 id="token-classification-datasets">Token Classification Datasets</h3>
+<ul>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/2-Token-Classification/README.MD">README</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/2-Token-Classification/Bias_tokens.csv">Bias Tokens Data</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/viewer/2-Token_Classification/conll_bias">CONLL Format Data</a></li>
+</ul>
+<h3 id="aspects-of-bias-dataset">Aspects of Bias Dataset</h3>
+<ul>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/3-Aspects/README.MD">README</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/3-Aspects/aspects.csv">Aspects Data</a></li>
+</ul>
+<h3 id="bias-quantification-demographics">Bias Quantification Demographics</h3>
+<ul>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/4-Bias-Quantification-Demographics/README.MD">README</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/4-Bias-Quantification-Demographics/demographic-template.csv">Demographic Templates</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/4-Bias-Quantification-Demographics/stereotype_prompts.csv">Stereotype Prompts</a></li>
+</ul>
+<h3 id="language-generation-datasets">Language Generation Datasets</h3>
+<ul>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/5-Language-Generation/README.MD">README</a></li>
+<li>📄 <a href="https://huggingface.co/datasets/shainar/BEAD/blob/main/5-Language-Generation/bias-debias.csv">Language Generation Data</a></li>
+</ul>
+<p>These above datasets are labeled through GPT-4 and verified by humans.<br>
+For GPT-3.5 and active learning labels, refer to <a href="https://huggingface.co/datasets/shainar/BEAD/viewer/Full_Annotations">Full Annotations</a>.</p>
+<h2 id="license">License</h2>
+<p>This dataset has been prepared by Shaina Raza, Vector Institute, and is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+<h2 id="feedback">Feedback</h2>
+<p>Provide your feedback or ask a question</p>
+<p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeisC9qRd_92SE5kFSvIwF2JvYzuIjbTaCLmvAIhMDbjUqwgg/viewform?embedded=true" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: white; background-color: #007BFF; text-align: center; text-decoration: none; border-radius: 5px;">
+    Click here to provide feedback
+</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+    
+  </body>
+</html>
