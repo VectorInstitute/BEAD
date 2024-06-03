@@ -1,0 +1,20 @@
+site_name: Bias Evaluation Across Domains - BEADS
+site_url: https://huggingface.co/datasets/shainar/BEAD
+theme:
+  name: 'material'
+  logo: logo.jpg
+
+plugins:
+  - search
+nav:
+  - Home: index.md
+  - Text Classification: text-classification.md
+  - Token Classification: token-classification.md
+  - Aspects: aspect.md
+  - Bias Quantification Demographics: bias-demographics.md
+  - Language Generation: language-generation.md
+  - Thanks: credit.md
+  - Lisence: lisence.md
+  - Datasheet: datasheet.pdf
+  - Feedback: feedback.md
+
