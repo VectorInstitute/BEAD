@@ -1,7 +1,7 @@
 # Bias Evaluation Across Domains (BEADs) 💠🔷🔹🔹 🔹 🔹🔷💠
 
 
-We introduce the **Bias Evaluation Across Domains (BEADs) Dataset** page, developed by the AI Engineering team under the work of **Shaina Raza,PhD** at the Vector Institute, and licensed under **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)**. It has been evaluated for large language models and designed to address critical challenges in identifying, quantifying, and mitigating biases within language models. This essential resource supports a variety of NLP tasks, facilitating comprehensive studies in bias evaluation.
+We introduce the **Bias Evaluation Across Domains (BEADs) Dataset** page, developed by the AI Engineering team under the work of Shaina Raza, PhD at the Vector Institute, and licensed under **[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)**. It has been evaluated for large language models and designed to address critical challenges in identifying, quantifying, and mitigating biases within language models. This essential resource supports a variety of NLP tasks, facilitating comprehensive studies in bias evaluation.
 
 <div style="text-align: center;">
     <img src="fig1.png" alt="BEAD Dataset Overview" style="width: 50%; height: auto;">
