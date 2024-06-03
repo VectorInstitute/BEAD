@@ -12,7 +12,6 @@ We introduce the **Bias Evaluation Across Domains (BEADs) Dataset** page, develo
 This dataset provides a comprehensive resource for detecting and evaluating bias across multiple NLP tasks.
 
 ## Links
-- 🌐 [**Webpage**](https://shainarazavi.github.io/BEAD/)
 - 📂 [**Access the BEADs Dataset on Hugging Face**](https://huggingface.co/datasets/shainar/BEAD)
 - 📜 [**Datasheet**](datasheet.pdf)
 - 📝 [**License**](lisence.md)
